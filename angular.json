@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "teste-establishment"
+    }
+  },
+  "defaultProject": "teste-establishment",
+  "cli": {
+    "analytics": false
+  }
 }
