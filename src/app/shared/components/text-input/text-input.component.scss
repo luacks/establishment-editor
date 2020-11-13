@@ -1,0 +1,33 @@
+.text-input {
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), #F8F9FD;
+  border: 1px solid #E6E8F0;
+  box-sizing: border-box;
+  border-radius: 5px;
+  height: 40px;
+  width: 100%;
+  margin-top: 7px;
+
+  input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding: 12px 15px;
+    font-family: 'Margem Rounded';
+    font-weight: 600;
+    font-size: 14px;
+    color: #7B7E8C;
+    width: 100%;
+  }
+}
+
+label {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 15px;
+  color: #4C5164;
+
+  &.hiddenLabel {
+    visibility: hidden;
+  }
+}

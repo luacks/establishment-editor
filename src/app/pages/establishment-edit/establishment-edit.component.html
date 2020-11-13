@@ -1,0 +1,65 @@
+<div class="container EstablishmentEdit">
+  <div class="card">
+    <app-edit-header></app-edit-header>
+
+    <h3 class="line">Informações Básicas</h3>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-4">
+        <app-text-input label="Nome" name="nome" id="nome"></app-text-input>
+      </div>   
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <app-text-input label="Cidade"></app-text-input>
+      </div>   
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <app-text-input label="Endereço"></app-text-input>
+      </div>   
+    </div>
+
+    <div class="financial">
+      <h3 class="line">Financeiro</h3>
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <app-text-input label="Banco"></app-text-input>
+        </div>   
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <app-text-input label="Tipo de conta"></app-text-input>
+        </div>   
+        <div class="col-xs-12 col-sm-12 col-md-4">
+          <app-text-input label="CPF / CNPJ"></app-text-input>
+        </div>   
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-4">
+          <div class="row">
+            <div class="col-xs-6">
+              <app-text-input label="Agência"></app-text-input>
+            </div>
+            <div class="col-xs-3">
+              <app-text-input label="Digito" hiddenLabel="true"></app-text-input>
+            </div>
+          </div>
+        </div>   
+        <div class="col-xs-12 col-sm-12 col-md-4">
+          <div class="row">
+            <div class="col-xs-6">
+              <app-text-input label="Conta"></app-text-input>
+            </div>
+            <div class="col-xs-3">
+              <app-text-input label="Digito" hiddenLabel="true"></app-text-input>
+            </div>
+          </div>
+        </div>   
+        <div class="col-xs-12 col-sm-12 col-md-4">
+          <app-text-input label="Saque automático?"></app-text-input>
+        </div>   
+      </div>
+
+      <div class="row end-xs">
+        <div class="col-xs-12">
+          <app-button></app-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

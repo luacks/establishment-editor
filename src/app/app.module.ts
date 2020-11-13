@@ -5,15 +5,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EstablishmentsModule } from './pages/establishments/establishments.module';
 import { SharedModule } from './shared/shared.module';
+import { EstablishmentEditModule } from './pages/establishment-edit/establishment-edit.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     EstablishmentsModule,
+    EstablishmentEditModule,
     SharedModule
   ],
   providers: [],

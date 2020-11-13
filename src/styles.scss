@@ -10,3 +10,28 @@ body {
   background: #F8F9FD;
   font-family: "Margem Rounded";
 }
+
+.card {
+  border: 1px solid #F9F9F9;
+  background-color: #FFFFFF;
+  box-sizing: border-box;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+}
+
+.flex {
+  display: flex;
+}
+
+.a-center {
+  align-items: center;
+}
+
+h3 {
+  font-size: 16px;
+  color: #4C5164;
+  line-height: 350%;;
+  &.line {
+    border-bottom: 1px solid #E6E8F0;
+  }
+}
