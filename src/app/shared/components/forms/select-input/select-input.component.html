@@ -1,11 +1,13 @@
-<label [class.hiddenLabel]="hiddenLabel" [for]="id">{{ label }}</label>
+<label [class.hiddenLabel]="hiddenLabel">
+  <ng-content></ng-content>
+</label>
 <div class="select-input">
-  <div class="select" (click)="show()">
-    {{ selectedOption?.text }}
+  <div class="select" (click)="toggleList()">
+    {{ getSelectedText() }}
   </div>
   <div class="select-list" *ngIf="active">
-    <div *ngFor="let option of options" (click)="selectOption(option)">
-      {{ option.text }}
+    <div *ngFor="let item of items" (click)="selectItem(item)">
+      {{ item.text }}
     </div>
   </div>
 </div>

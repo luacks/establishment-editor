@@ -35,9 +35,9 @@
             </app-text-input> -->
           </div>
           <div class="col-xs-12 col-sm-6 col-md-4">
-            <!-- <app-text-input>
+            <app-select-input formControlName="accountType" [items]="accountOptions">
               Tipo de conta
-            </app-text-input> -->
+            </app-select-input>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-4">
             <app-text-input formControlName="document" mask="000.000.000-00||00.000.000/0000-00" >
@@ -75,7 +75,9 @@
             </div>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-4">
-            <app-select-input label="Saque automático?" [options]="withdrawOptions"></app-select-input>
+            <app-select-input formControlName="automaticWithdraw" [items]="withdrawOptions">
+              Saque automático?
+            </app-select-input>
           </div>
         </div>
       </div>

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { IAddress } from 'src/app/models/address.model';
 import { getEstablishmentAddress, IEstablishment } from 'src/app/models/establishment.model';
 import { SelectOption } from 'src/app/shared/components/forms/select-input/SelectOption';
 import { EstablishmentService } from 'src/app/shared/services/establishment.service';
@@ -17,6 +16,11 @@ export class EstablishmentEditComponent implements OnInit {
     { text: 'Sim', value: true, selected: true },
     { text: 'Não', value: false }
   ];
+
+  accountOptions: SelectOption[] = [
+    { text: 'Poupaça', value: 'poupanca', selected: true },
+    { text: 'Corrente', value: 'corrente' }
+  ]
 
   establishment: IEstablishment;
 
@@ -38,7 +42,9 @@ export class EstablishmentEditComponent implements OnInit {
           agency: ['', Validators.required],
           agencyDigit: ['', Validators.required],
           account: ['', Validators.required],
-          accountDigit: ['', Validators.required]
+          accountDigit: ['', Validators.required],
+          automaticWithdraw: [''],
+          accountType: ['corrente']
         })
       });
   }
