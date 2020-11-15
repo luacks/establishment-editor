@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { IAddress } from 'src/app/models/address.model';
+import { IEstablishment, getEstablishmentAddress } from 'src/app/models/establishment.model';
 
 @Component({
   selector: 'app-establishment-card',
@@ -8,13 +10,20 @@ import { Router } from '@angular/router';
 })
 export class EstablishmentCardComponent implements OnInit {
 
+  @Input()
+  establishment: IEstablishment;
+
+  address: IAddress;
+
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+    this.address = getEstablishmentAddress(this.establishment.address);
   }
 
-  navigateEdit() {
-    this.router.navigate(['establishment', 2, 'edit']);
+  navigateEdit(): void {
+    this.router.navigate(['establishment', this.establishment.index, 'edit'], {
+      state: this.establishment
+    });
   }
-
 }

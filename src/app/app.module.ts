@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { EstablishmentsModule } from './pages/establishments/establishments.module';
 import { SharedModule } from './shared/shared.module';
 import { EstablishmentEditModule } from './pages/establishment-edit/establishment-edit.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { EstablishmentEditModule } from './pages/establishment-edit/establishmen
     AppRoutingModule,
     EstablishmentsModule,
     EstablishmentEditModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

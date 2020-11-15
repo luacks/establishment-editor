@@ -11,4 +11,10 @@ button {
   line-height: 15px;
   text-transform: uppercase;
   outline: none;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: unset;
+  }
 }

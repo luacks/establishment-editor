@@ -1,7 +1,13 @@
 <div class="card establishment-card" (click)="navigateEdit()">
-  <app-establishment-image></app-establishment-image>
+  <app-establishment-image [src]="establishment?.picture"></app-establishment-image>
   <div class="info">
-    <div class="name">Subway <span>28392</span></div>
-    <div class="address">Curitiba | <span>Nem sei</span></div>
+    <div class="name">
+      {{ establishment?.name }} 
+      <span>{{ establishment?.index }}</span>
+    </div>
+    <div class="address">
+      {{ address?.city }} | 
+      <span>{{ address?.street }}, {{ address?.number }} - {{ address.city }}</span>
+    </div>
   </div>
 </div>

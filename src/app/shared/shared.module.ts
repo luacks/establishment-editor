@@ -4,21 +4,36 @@ import { EstablishmentCardComponent } from './components/establishment-card/esta
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { EstablishmentImageComponent } from './components/establishment-image/establishment-image.component';
-import { TextInputComponent } from './components/text-input/text-input.component';
-import { ButtonComponent } from './components/button/button.component';
-
+import { TextInputComponent } from './components/forms/text-input/text-input.component';
+import { ButtonComponent } from './components/forms/button/button.component';
+import { SelectInputComponent } from './components/forms/select-input/select-input.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxMaskModule } from 'ngx-mask';
 @NgModule({
-  declarations: [EstablishmentCardComponent, NavbarComponent, EstablishmentImageComponent, TextInputComponent, ButtonComponent],
+  declarations: [
+    EstablishmentCardComponent,
+    NavbarComponent,
+    EstablishmentImageComponent,
+    TextInputComponent,
+    ButtonComponent,
+    SelectInputComponent
+  ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxMaskModule.forRoot()
   ],
   exports: [
     EstablishmentCardComponent,
     EstablishmentImageComponent,
     NavbarComponent,
     TextInputComponent,
-    ButtonComponent
+    ButtonComponent,
+    SelectInputComponent
   ]
 })
 export class SharedModule { }

@@ -1,0 +1,15 @@
+@import "../forms.scss";
+
+.input-root {
+
+  .text-input {
+    @include input-theme;
+  
+    input {
+      @include input-default;
+    }
+  }
+
+  @include input-error;
+}
+

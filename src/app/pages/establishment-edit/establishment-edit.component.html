@@ -1,65 +1,91 @@
 <div class="container EstablishmentEdit">
   <div class="card">
-    <app-edit-header></app-edit-header>
+    <app-edit-header [establishment]="establishment"></app-edit-header>
 
     <h3 class="line">Informações Básicas</h3>
-
-    <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-4">
-        <app-text-input label="Nome" name="nome" id="nome"></app-text-input>
-      </div>   
-      <div class="col-xs-12 col-sm-6 col-md-4">
-        <app-text-input label="Cidade"></app-text-input>
-      </div>   
-      <div class="col-xs-12 col-sm-6 col-md-4">
-        <app-text-input label="Endereço"></app-text-input>
-      </div>   
-    </div>
-
-    <div class="financial">
-      <h3 class="line">Financeiro</h3>
-      <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-4">
-          <app-text-input label="Banco"></app-text-input>
-        </div>   
-        <div class="col-xs-12 col-sm-6 col-md-4">
-          <app-text-input label="Tipo de conta"></app-text-input>
-        </div>   
-        <div class="col-xs-12 col-sm-12 col-md-4">
-          <app-text-input label="CPF / CNPJ"></app-text-input>
-        </div>   
-      </div>
+    <form [formGroup]="formEdit">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-4">
+          <app-text-input formControlName="name">
+            Nome
+          </app-text-input>
+        </div>
+        <div class="col-md-8" formGroupName="address">
           <div class="row">
-            <div class="col-xs-6">
-              <app-text-input label="Agência"></app-text-input>
+            <div class="col-xs-12 col-sm-6 col-md-6">
+              <app-text-input formControlName="city">
+                Cidade
+              </app-text-input>
             </div>
-            <div class="col-xs-3">
-              <app-text-input label="Digito" hiddenLabel="true"></app-text-input>
+            <div class="col-xs-12 col-sm-6 col-md-6">
+              <app-text-input formControlName="street">
+                Endereço
+              </app-text-input>
             </div>
           </div>
-        </div>   
-        <div class="col-xs-12 col-sm-12 col-md-4">
-          <div class="row">
-            <div class="col-xs-6">
-              <app-text-input label="Conta"></app-text-input>
-            </div>
-            <div class="col-xs-3">
-              <app-text-input label="Digito" hiddenLabel="true"></app-text-input>
-            </div>
-          </div>
-        </div>   
-        <div class="col-xs-12 col-sm-12 col-md-4">
-          <app-text-input label="Saque automático?"></app-text-input>
-        </div>   
-      </div>
-
-      <div class="row end-xs">
-        <div class="col-xs-12">
-          <app-button></app-button>
         </div>
       </div>
-    </div>
+
+      <div class="financial" formGroupName="financial">
+        <h3 class="line">Financeiro</h3>
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <!-- <app-text-input>
+              Banco
+            </app-text-input> -->
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <!-- <app-text-input>
+              Tipo de conta
+            </app-text-input> -->
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-4">
+            <app-text-input formControlName="document" mask="000.000.000-00||00.000.000/0000-00" >
+              CPF / CNPJ
+            </app-text-input>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-4">
+            <div class="row">
+              <div class="col-xs-6">
+                <app-text-input formControlName="agency" mask="0*">
+                  Agência
+                </app-text-input>
+              </div>
+              <div class="col-xs-3">
+                <app-text-input [hiddenLabel]="true" formControlName="agencyDigit" mask="0">
+                  Digito
+                </app-text-input>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-4">
+            <div class="row">
+              <div class="col-xs-6">
+                <app-text-input formControlName="account" mask="0*">
+                  Conta
+                </app-text-input>
+              </div>
+              <div class="col-xs-3">
+                <app-text-input [hiddenLabel]="true" formControlName="accountDigit" mask="0">
+                  Digito
+                </app-text-input>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-4">
+            <app-select-input label="Saque automático?" [options]="withdrawOptions"></app-select-input>
+          </div>
+        </div>
+      </div>
+
+      <div class="row end-xs form-submit">
+        <div class="col-xs-12">
+          <app-button title="Salvar" [isDisabled]="!formEdit.valid" (btnClick)="submit()"></app-button>
+        </div>
+      </div>
+    </form>
+
   </div>
 </div>

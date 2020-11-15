@@ -1,0 +1,11 @@
+<label [class.hiddenLabel]="hiddenLabel" [for]="id">{{ label }}</label>
+<div class="select-input">
+  <div class="select" (click)="show()">
+    {{ selectedOption?.text }}
+  </div>
+  <div class="select-list" *ngIf="active">
+    <div *ngFor="let option of options" (click)="selectOption(option)">
+      {{ option.text }}
+    </div>
+  </div>
+</div>
