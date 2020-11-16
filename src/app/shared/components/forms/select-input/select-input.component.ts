@@ -32,7 +32,7 @@ export class SelectInputComponent implements ControlValueAccessor {
   getSelectedText(): string {
     if ( Array.isArray(this.items) ) {
       const option = this.items.filter( item => item.value === this.value )[0];
-      return option ? option.text : null;
+      return option ? option.text : 'Selecione';
     }
   }
 
@@ -66,6 +66,7 @@ export class SelectInputComponent implements ControlValueAccessor {
   }
 
   selectItem(item: SelectOption): void {
+    console.log(item);
     this.onChange(item.value);
     this.value = item.value;
     this.active = false;

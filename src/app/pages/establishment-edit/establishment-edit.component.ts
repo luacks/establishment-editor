@@ -17,13 +17,11 @@ import { ICity } from 'src/app/models/city.model';
 export class EstablishmentEditComponent implements OnInit {
 
   withdrawOptions: SelectOption[] = [
-    { text: 'Selecione', value: '' },
     { text: 'Sim', value: true },
     { text: 'Não', value: false }
   ];
 
   accountOptions: SelectOption[] = [
-    { text: 'Selecione', value: '' },
     { text: 'Poupaça', value: 'poupanca' },
     { text: 'Corrente', value: 'corrente' }
   ];
@@ -94,12 +92,13 @@ export class EstablishmentEditComponent implements OnInit {
   }
 
   submit(): void {
-    // tslint:disable-next-line: radix
-    const id = parseInt(this.route.snapshot.paramMap.get('id'));
-    this.establishmentService.update({
+    const updatedEstablishment = {
+      ...this.establishment,
       ...this.formEdit.value,
-      index: id
-    });
+    };
+
+    this.establishment = updatedEstablishment;
+    this.establishmentService.update(updatedEstablishment);
   }
 
 }

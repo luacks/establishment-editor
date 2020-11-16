@@ -2,6 +2,8 @@
 
 .input-root {
 
+  @include input-error;
+  
   .select-input {
     @include input-theme;
     position: relative;
@@ -11,6 +13,12 @@
       cursor: pointer;
     }
   
+    svg {
+      position: absolute;
+      right: 18px;
+      top: 13px;
+    }
+
     .select-list {
       background-color: white;
       border: 1px solid #E6E8F0;
@@ -38,5 +46,4 @@
     }
   }
 
-  @include input-error;
 }
