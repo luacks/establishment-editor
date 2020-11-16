@@ -1,29 +1,42 @@
 @import "../forms.scss";
 
-.select-input {
-  @include input-theme;
+.input-root {
 
-  .select {
-    @include input-default;
-    cursor: pointer;
-  }
+  .select-input {
+    @include input-theme;
+    position: relative;
+  
+    .select {
+      @include input-default;
+      cursor: pointer;
+    }
+  
+    .select-list {
+      background-color: white;
+      border: 1px solid #E6E8F0;
+      position: absolute;
+      width: 100%;
+      z-index: 999;
+  
+      div {
+        padding: 12px 15px;
+        font-family: 'Margem Rounded';
+        font-weight: 600;
+        font-size: 14px;
+        color: #7B7E8C;
+        
+        &:hover {
+          background: darken(white, 5%);
+          cursor: pointer;
+        }
 
-  .select-list {
-    background-color: white;
-    border: 1px solid #E6E8F0;
-
-    div {
-      padding: 12px 15px;
-      font-family: 'Margem Rounded';
-      font-weight: 600;
-      font-size: 14px;
-      color: #7B7E8C;
-      
-      &:hover {
-        background: darken(white, 5%);
-        cursor: pointer;
+        &.hovered {
+          background: darken(white, 5%);
+        }
       }
+
     }
   }
 
+  @include input-error;
 }

@@ -19,7 +19,7 @@ export class EstablishmentCardComponent implements OnInit {
 
   ngOnInit(): void {
     if ( typeof this.establishment.address === 'string' ) {
-      this.address = getEstablishmentAddress(this.establishment.address);
+      this.establishment.address = getEstablishmentAddress(this.establishment.address);
     }
   }
 

@@ -30,9 +30,9 @@
         <h3 class="line">Financeiro</h3>
         <div class="row">
           <div class="col-xs-12 col-sm-6 col-md-4">
-            <!-- <app-text-input>
+            <app-select-input *ngIf="banks" formControlName="bank" [items]="banks">
               Banco
-            </app-text-input> -->
+            </app-select-input>
           </div>
           <div class="col-xs-12 col-sm-6 col-md-4">
             <app-select-input formControlName="accountType" [items]="accountOptions">

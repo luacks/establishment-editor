@@ -1,13 +1,22 @@
-<label [class.hiddenLabel]="hiddenLabel">
-  <ng-content></ng-content>
-</label>
-<div class="select-input">
-  <div class="select" (click)="toggleList()">
-    {{ getSelectedText() }}
-  </div>
-  <div class="select-list" *ngIf="active">
-    <div *ngFor="let item of items" (click)="selectItem(item)">
-      {{ item.text }}
+<div class="input-root" [class.input-error]="ngControl.invalid">
+  <label [class.hiddenLabel]="hiddenLabel">
+    <ng-content></ng-content>
+  </label>
+  <div class="select-input">
+    <input type="hidden" [formControl]="ngControl.control" [value]="value">
+    <input type="text" 
+        class="select"
+        [value]="getSelectedText()" 
+        (focus)="toggleList(true)"
+        (focusout)="toggleList(false)"
+        readonly>
+    <div class="select-list" *ngIf="active">
+      <div *ngFor="let item of items; index as i" [class.hovered]="i == hoveredOption" (click)="selectItem(item)">
+        {{ item.text }}
+      </div>
     </div>
+  </div>
+  <div class="input-error-message" *ngIf="ngControl.hasError('required') && !hiddenLabel">
+    Este campo é obrigatório
   </div>
 </div>

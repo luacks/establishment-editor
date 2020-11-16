@@ -60,13 +60,14 @@ export class EstablishmentService {
     }
 
     const updatedEstablishments = establishments.map( storedEstablishment => {
-      if ( storedEstablishment.id === establishment.id ) {
-        storedEstablishment = establishment;
+      if ( storedEstablishment.index === establishment.index ) {
+        return establishment;
       }
 
       return storedEstablishment;
     });
 
+    console.log(updatedEstablishments);
     localStorage.setItem('establishments', JSON.stringify(updatedEstablishments));
   }
 }
