@@ -1,22 +1,22 @@
 [
   {
-    "id": 1,
+    "id": "Curitiba",
     "name": "Curitiba"
   },
   {
-    "id": 2,
+    "id": "São José dos Pinhais",
     "name": "São José dos Pinhais"
   },
   {
-    "id": 3,
+    "id": "Palmeira",
     "name": "Palmeira"
   },
   {
-    "id": 4,
+    "id": "Colombo",
     "name": "Colombo"
   },
   {
-    "id": 5,
+    "id": "Pinhais",
     "name": "Pinhais"
   }
 ]

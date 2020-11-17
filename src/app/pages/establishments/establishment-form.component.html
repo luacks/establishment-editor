@@ -1,6 +1,6 @@
-<div class="container EstablishmentEdit">
+<div class="container establishment-form">
   <div class="card">
-    <app-edit-header [establishment]="establishment"></app-edit-header>
+    <app-establishment-header [establishment]="establishment"></app-establishment-header>
 
     <h3 class="line">Informações Básicas</h3>
     <form [formGroup]="formEdit">
@@ -10,12 +10,12 @@
             Nome
           </app-text-input>
         </div>
-        <div class="col-md-8" formGroupName="address">
+        <div class="col-md-8 col-xs-12 col-md-8" formGroupName="address">
           <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-6">
-              <app-text-input formControlName="city">
+              <app-select-input *ngIf="cities" formControlName="city" [items]="cities">
                 Cidade
-              </app-text-input>
+              </app-select-input>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-6">
               <app-text-input formControlName="street">
@@ -48,7 +48,7 @@
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-4">
             <div class="row">
-              <div class="col-xs-6">
+              <div class="col-xs-9">
                 <app-text-input formControlName="agency" mask="0*">
                   Agência
                 </app-text-input>
@@ -62,7 +62,7 @@
           </div>
           <div class="col-xs-12 col-sm-12 col-md-4">
             <div class="row">
-              <div class="col-xs-6">
+              <div class="col-xs-9">
                 <app-text-input formControlName="account" mask="0*">
                   Conta
                 </app-text-input>

@@ -1,4 +1,5 @@
 @import "../forms.scss";
+@import "theme";
 
 .input-root {
 
@@ -17,24 +18,24 @@
       position: absolute;
       right: 18px;
       top: 13px;
+      pointer-events: none;
     }
 
     .select-list {
       background-color: white;
-      border: 1px solid #E6E8F0;
+      border: 1px solid $theme-color-light;
       position: absolute;
       width: 100%;
       z-index: 999;
   
       div {
         padding: 12px 15px;
-        font-family: 'Margem Rounded';
+        font-family: $theme-font;
         font-weight: 600;
         font-size: 14px;
-        color: #7B7E8C;
+        color: $theme-color-medium;
         
         &:hover {
-          background: darken(white, 5%);
           cursor: pointer;
         }
 

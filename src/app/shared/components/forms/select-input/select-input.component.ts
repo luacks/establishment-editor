@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input, OnInit, Self } from '@angular/core';
+import { Component, ElementRef, Input, Self, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NgControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { SelectOption } from './SelectOption';
 
@@ -15,26 +15,26 @@ export class SelectInputComponent implements ControlValueAccessor {
   @Input()
   hiddenLabel: boolean;
 
+  @ViewChild('fakeSelect')
+  public inputRef: ElementRef;
+
   public active = false;
 
   public value: any;
 
+  public selectedText = '';
+
   public isDisabled: boolean;
 
-  private onChange;
+  public hoveredOption = 0;
 
-  public hoveredOption: number;
+  private onChange;
 
   constructor(@Self() public ngControl: NgControl){
     this.ngControl.valueAccessor = this;
   }
 
-  getSelectedText(): string {
-    if ( Array.isArray(this.items) ) {
-      const option = this.items.filter( item => item.value === this.value )[0];
-      return option ? option.text : 'Selecione';
-    }
-  }
+  registerOnTouched(fn: any): void { }
 
   registerOnChange(fn: any): void {
     this.items.map( (item, index) => {
@@ -47,13 +47,13 @@ export class SelectInputComponent implements ControlValueAccessor {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: any): void { }
-
   toggleList(enable: boolean): void {
-    if ( enable ) {
-      this.active = true;
+    if ( enable && !this.isDisabled ) {
+      this.hoveredOption = 0;
+      this.setActive(true);
     } else {
-      setTimeout(() => this.active = false, 100);
+      // TODO deve existir algo melhor pra isso
+      setTimeout(() => this.setActive(false), 200);
     }
   }
 
@@ -62,13 +62,46 @@ export class SelectInputComponent implements ControlValueAccessor {
   }
 
   writeValue(value: any): void {
+    this.selectedText = this.getSelectedText(value);
     this.value = value;
   }
 
   selectItem(item: SelectOption): void {
-    console.log(item);
     this.onChange(item.value);
     this.value = item.value;
-    this.active = false;
+    this.selectedText = item.text;
+    this.setActive(false);
   }
+
+  private setActive(value: boolean): void {
+
+    const keydownHandler = ({ keyCode }) => {
+      if ( keyCode === 40 && this.hoveredOption < this.items.length - 1) {
+        this.hoveredOption++;
+      }
+
+      if ( keyCode === 38 && this.hoveredOption > 0 ) {
+        this.hoveredOption--;
+      }
+
+      if ( keyCode === 13 ) {
+        this.writeValue(this.items[this.hoveredOption].value);
+        this.toggleList(false);
+      }
+    };
+
+    if ( !value ) {
+      this.inputRef.nativeElement.removeEventListener('keydown', keydownHandler);
+    } else {
+      this.inputRef.nativeElement.addEventListener('keydown', keydownHandler);
+    }
+
+    this.active = value;
+  }
+
+  private getSelectedText(value: any): string {
+    const itemSelected = this.items.filter( item => item.value === value )[0];
+    return itemSelected ? itemSelected.text : 'Selecione';
+  }
+
 }

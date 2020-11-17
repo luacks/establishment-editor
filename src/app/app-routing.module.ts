@@ -1,16 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { EstablishmentEditComponent } from './pages/establishment-edit/establishment-edit.component';
-import { EstablishmentsComponent } from './pages/establishments/establishments.component';
+import { AppComponent } from './app.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: EstablishmentsComponent
+    component: AppComponent,
   },
   {
-    path: 'establishment/:id/edit',
-    component: EstablishmentEditComponent,
+    path: 'establishments',
+    loadChildren: () => import('./pages/establishments/establishments.module').then(m => m.EstablishmentsModule)
   }
 ];
 

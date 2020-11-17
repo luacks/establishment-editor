@@ -1,10 +1,12 @@
+@import "theme";
+
 button {
   height: 41px;
-  background: #28CC9B;
+  background: $theme-color-primary;
   border-radius: 100px;
   padding: 13px 30px;
   border: none;
-  font-family: 'Margem Rounded';
+  font-family: $theme-font;
   color: white;
   font-weight: bold;
   font-size: 13px;

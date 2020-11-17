@@ -1,8 +1,10 @@
-<div class="card establishment-card" (click)="navigateEdit()">
-  <app-establishment-image [src]="establishment?.picture"></app-establishment-image>
+<div class="card establishment-card">
+  <div class="establishment-image">
+    <img [src]="establishment?.picture" alt="univ" [routerLink]="[establishment?.index, 'edit']">
+  </div>
   <div class="info">
     <div class="name">
-      {{ establishment?.name }} 
+      <a [routerLink]="[establishment?.index, 'edit']">{{ establishment?.name }}</a>
       <span>{{ establishment?.index }}</span>
     </div>
     <div class="address">

@@ -1,0 +1,52 @@
+.establishment-form {
+  .card {
+    margin-top: 30px;
+    padding: 20px 30px;
+  }
+
+  .financial {
+    >.row {
+      margin-top: 20px;
+      
+      &:first-child {
+        margin-top: 0;
+      }
+
+    }
+  }
+
+  .form-submit {
+    margin-top: 94px;
+  }
+
+  .group {
+    display: flex;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.establishment-header {
+  .goBack {
+    cursor: pointer;
+    margin-right: 30px;
+  }
+  
+  .info {
+    font-family: "Margem Rounded";
+    font-style: normal;
+    font-weight: bold;
+    font-size: 21px;
+    line-height: 24px;
+    color: #4C5164;
+    margin-left: 22px;
+  
+    .id {
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 16px;
+      color: #81879C;
+      margin-top: 6px;
+    }
+  }
+}

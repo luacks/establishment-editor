@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Observable, Subscriber } from 'rxjs';
-import { IEstablishment } from '../../models/establishment.model';
+import { formatAPIData, IEstablishment } from '../../models/establishment.model';
 
 @Injectable({
   providedIn: 'root'
@@ -20,11 +20,11 @@ export class EstablishmentService {
 
   private fetchAPI(): Observable<IEstablishment[]> {
     return this.http.get<IEstablishment[]>(this.api + '/establishments')
+      .pipe(map(formatAPIData))
       .pipe(map(data => {
         localStorage.setItem('establishments', JSON.stringify(data));
         return data;
-      }))
-      .pipe(map( data => data));
+      }));
   }
 
   private fetchLocal(): Observable<IEstablishment[]> {
@@ -32,6 +32,7 @@ export class EstablishmentService {
       const data = localStorage.getItem('establishments');
       const json = JSON.parse(data);
       subscriber.next(json);
+      subscriber.complete();
     });
   }
 
@@ -46,6 +47,7 @@ export class EstablishmentService {
         subscriber.next(data.filter( establishment => {
           return establishment.index === index;
         } )[0]);
+        subscriber.complete();
       });
     });
   }

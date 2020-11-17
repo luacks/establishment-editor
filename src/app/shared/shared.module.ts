@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { EstablishmentCardComponent } from './components/establishment-card/establishment-card.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RouterModule } from '@angular/router';
-import { EstablishmentImageComponent } from './components/establishment-image/establishment-image.component';
 import { TextInputComponent } from './components/forms/text-input/text-input.component';
 import { ButtonComponent } from './components/forms/button/button.component';
 import { SelectInputComponent } from './components/forms/select-input/select-input.component';
@@ -14,7 +13,6 @@ import { NgxMaskModule } from 'ngx-mask';
   declarations: [
     EstablishmentCardComponent,
     NavbarComponent,
-    EstablishmentImageComponent,
     TextInputComponent,
     ButtonComponent,
     SelectInputComponent
@@ -29,7 +27,6 @@ import { NgxMaskModule } from 'ngx-mask';
   ],
   exports: [
     EstablishmentCardComponent,
-    EstablishmentImageComponent,
     NavbarComponent,
     TextInputComponent,
     ButtonComponent,

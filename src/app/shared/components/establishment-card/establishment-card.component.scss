@@ -3,7 +3,6 @@
   margin-top: 5px;
   display: flex;
   align-items: center;
-  cursor: pointer;
   transition: all 0.25s ease-in-out;
 
   &:hover {
@@ -11,6 +10,10 @@
     transform: translate3d( 2px, 0px, 5px);
   }
 
+  img { 
+    cursor: pointer;
+  }
+  
   .info {
     font-size: 15px;
     color: #81879C;
@@ -18,7 +21,10 @@
     line-height: 150%;
 
     .name {
-      color: #4C5164;
+      a {
+        text-decoration: none;
+        color: #4C5164;
+      }
       font-size: 18px;
       font-weight: bold;
 

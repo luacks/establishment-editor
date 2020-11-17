@@ -1,10 +1,11 @@
+@import "theme";
 
 label {
   font-style: normal;
   font-weight: 600;
   font-size: 13px;
   line-height: 15px;
-  color: #4C5164;
+  color: $theme-color-dark;
   padding-bottom: 7px;
 
   &.hiddenLabel {
@@ -14,7 +15,7 @@ label {
 
 @mixin input-theme {
   background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), #F8F9FD;
-  border: 1px solid #E6E8F0;
+  border: 1px solid $theme-color-light;
   box-sizing: border-box;
   border-radius: 5px;
   height: 40px;
@@ -28,7 +29,7 @@ label {
   outline: none;
   width: 100%;
   padding: 12px 15px;
-  font-family: 'Margem Rounded';
+  font-family: $theme-font;
   font-weight: 600;
   font-size: 14px;
   color: #7B7E8C;
@@ -40,12 +41,12 @@ label {
 
     .text-input,
     .select-input {
-      border-color: red;
+      border-color: $theme-color-error;
     }
   }
 
   .input-error-message {
-    color: red;
+    color: $theme-color-error;
     font-size: 13px;
     font-weight: 600;
     margin-top: 3px;

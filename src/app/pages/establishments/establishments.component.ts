@@ -1,26 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { IEstablishment } from 'src/app/models/establishment.model';
 import { EstablishmentService } from 'src/app/shared/services/establishment.service';
 
 @Component({
   selector: 'app-establishments',
-  templateUrl: './establishments.component.html',
-  styleUrls: ['./establishments.component.scss']
+  template: `
+    <div class="container">
+      <app-establishment-card *ngFor="let establishment of establishments" [establishment]="establishment"></app-establishment-card>
+    </div>
+  `
 })
 export class EstablishmentsComponent implements OnInit {
 
   establishments: IEstablishment[];
 
-  editForm;
-
-  constructor(
-    private establishmentService: EstablishmentService,
-    private formBuilder: FormBuilder) {
-      this.editForm = this.formBuilder.group({
-        name: ''
-      });
-  }
+  constructor(private establishmentService: EstablishmentService) { }
 
   ngOnInit(): void {
     this.establishmentService.fetch()

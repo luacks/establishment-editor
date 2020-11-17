@@ -17,14 +17,10 @@ export class EstablishmentCardComponent implements OnInit {
 
   constructor(private router: Router) { }
 
-  ngOnInit(): void {
-    if ( typeof this.establishment.address === 'string' ) {
-      this.establishment.address = getEstablishmentAddress(this.establishment.address);
-    }
-  }
+  ngOnInit(): void { }
 
   navigateEdit(): void {
-    this.router.navigate(['establishment', this.establishment.index, 'edit'], {
+    this.router.navigate(['establishments', this.establishment.index, 'edit'], {
       state: this.establishment
     });
   }

@@ -1,20 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { getEstablishmentAddress, IEstablishment } from 'src/app/models/establishment.model';
+import { IEstablishment } from 'src/app/models/establishment.model';
 import { SelectOption } from 'src/app/shared/components/forms/select-input/SelectOption';
 import { EstablishmentService } from 'src/app/shared/services/establishment.service';
 import { BankService } from 'src/app/shared/services/bank.service';
 import { CityService } from 'src/app/shared/services/city.service';
 import { IBank } from 'src/app/models/bank.model';
 import { ICity } from 'src/app/models/city.model';
+import { forkJoin } from 'rxjs';
 
 @Component({
-  selector: 'app-establishment-edit',
-  templateUrl: './establishment-edit.component.html',
-  styleUrls: ['./establishment-edit.component.scss']
+  selector: 'app-establishment-form',
+  templateUrl: './establishment-form.component.html',
+  styleUrls: ['./establishments.scss']
 })
-export class EstablishmentEditComponent implements OnInit {
+export class EstablishmentFormComponent implements OnInit {
 
   withdrawOptions: SelectOption[] = [
     { text: 'Sim', value: true },
@@ -29,7 +30,7 @@ export class EstablishmentEditComponent implements OnInit {
   establishment: IEstablishment;
 
   banks: SelectOption[];
-  cities: ICity[];
+  cities: SelectOption[];
 
   formEdit: FormGroup;
 
@@ -62,43 +63,42 @@ export class EstablishmentEditComponent implements OnInit {
   ngOnInit(): void {
     // tslint:disable-next-line: radix
     const id = parseInt(this.route.snapshot.paramMap.get('id'));
-    this.establishmentService.getOneByIndex(id)
-      .subscribe( data => {
-        this.establishment = data;
 
-        if ( typeof this.establishment.address === 'string' ) {
-          this.establishment.address = getEstablishmentAddress(this.establishment.address);
-        }
+    forkJoin({
+      establishment: this.establishmentService.getOneByIndex(id),
+      banks: this.banksService.getBanks(),
+      cities: this.cityService.getCities()
+    }).subscribe(({ establishment, banks, cities }) => {
 
-        // fill form with saved data
-        this.formEdit.reset({
-          ...this.establishment
-        });
+      this.establishment = establishment;
+      this.banks = this.getBanksOptions(banks);
+      this.cities = this.getCitiesOptions(cities);
+
+      this.formEdit.reset({
+        ...this.establishment
       });
+    });
 
-    this.banksService.getBanks()
-      .subscribe( banks => this.banks = this.getBanksOptions(banks));
-
-    this.cityService.getCities()
-      .subscribe( cities => this.cities = cities);
   }
 
-  getBanksOptions(banks: IBank[]): SelectOption[] {
-    return banks?.map( bank => ({ value: bank.id, text: bank.name }));
+  private getBanksOptions(banks: IBank[]): SelectOption[] {
+    return banks.map( bank => ({ value: bank.id, text: bank.name }));
   }
 
-  getCitiesOptions(): SelectOption[] {
-    return this.cities?.map( city => ({ value: city.id, text: city.name }));
+  private getCitiesOptions(cities: ICity[]): SelectOption[] {
+    return cities.map( city => ({ value: city.id, text: city.name }));
   }
 
   submit(): void {
-    const updatedEstablishment = {
-      ...this.establishment,
-      ...this.formEdit.value,
-    };
+    if ( this.formEdit.valid ) {
+      const updatedEstablishment = {
+        ...this.establishment,
+        ...this.formEdit.value,
+      };
 
-    this.establishment = updatedEstablishment;
-    this.establishmentService.update(updatedEstablishment);
+      this.establishment = updatedEstablishment;
+      this.establishmentService.update(updatedEstablishment);
+    }
   }
 
 }

@@ -5,8 +5,9 @@
   <div class="select-input">
     <input type="hidden" [formControl]="ngControl.control" [value]="value">
     <input type="text" 
+        #fakeSelect
         class="select"
-        [value]="getSelectedText()" 
+        [value]="selectedText" 
         (focus)="toggleList(true)"
         (focusout)="toggleList(false)"
         readonly>
@@ -15,7 +16,7 @@
     </svg>
           
     <div class="select-list" *ngIf="active">
-      <div *ngFor="let item of items; index as i" [class.hovered]="i == hoveredOption" (click)="selectItem(item)">
+      <div *ngFor="let item of items; index as i" (mouseover)="hoveredOption = i" [class.hovered]="i == hoveredOption" (click)="selectItem(item)">
         {{ item.text }}
       </div>
     </div>

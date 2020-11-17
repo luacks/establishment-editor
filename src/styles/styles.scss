@@ -1,6 +1,8 @@
+@import './theme';
+
 @font-face {
-  font-family: "Margem Rounded";
-  src: url(assets/fonts/MargemRoundedVariableTest.ttf) format('truetype');
+  font-family: $theme-font;
+  src: url('../assets/fonts/MargemRoundedVariableTest.ttf') format('truetype');
   font-weight: normal;
 }
 
@@ -8,7 +10,7 @@ body {
   padding: 0;
   margin: 0;
   background: #F8F9FD;
-  font-family: "Margem Rounded";
+  font-family: $theme-font;
 }
 
 .card {
@@ -25,6 +27,21 @@ body {
 
 .a-center {
   align-items: center;
+}
+
+.establishment-image {
+  width: 74px;
+  height: 74px;
+  border-radius: 3px;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+  }
+}
+
+.container {
+  margin-top: 25px;
 }
 
 h3 {

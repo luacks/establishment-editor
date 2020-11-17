@@ -9,9 +9,11 @@ export interface IEstablishment {
   name: string;
   email: string;
   phone: string;
-  address: IAddress | string;
+  address: IAddress;
   registered: string;
   financial: IFinancial;
+  latitude: string;
+  longitute: string;
 }
 
 export function getEstablishmentAddress(establishmentAddress: string): IAddress {
@@ -22,4 +24,25 @@ export function getEstablishmentAddress(establishmentAddress: string): IAddress 
     street: sanitizeString(addressParts[0] + ', ' + addressParts[3] + ' - ' + addressParts[1]),
     city: sanitizeString(addressParts[2])
   };
+}
+
+/**
+ * This function recive API data and format to corret DATA application
+ */
+export function formatAPIData(establishments: any): IEstablishment[] {
+  return establishments.map( establishment => {
+    return {
+      ...establishment,
+      address: getEstablishmentAddress(establishment.address),
+      financial: {
+        account: null,
+        accountType: null,
+        accountDigit: null,
+        bank: null,
+        agency: null,
+        agencyDigit: null,
+        automaticWithdraw: null,
+      }
+    };
+  });
 }
