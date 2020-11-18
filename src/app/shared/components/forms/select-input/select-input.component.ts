@@ -18,6 +18,9 @@ export class SelectInputComponent implements ControlValueAccessor {
   @ViewChild('fakeSelect')
   public inputRef: ElementRef;
 
+  @ViewChild('list')
+  public list: ElementRef;
+
   public active = false;
 
   public value: any;
@@ -30,8 +33,43 @@ export class SelectInputComponent implements ControlValueAccessor {
 
   private onChange;
 
+  private keyboardHandler;
+
   constructor(@Self() public ngControl: NgControl){
     this.ngControl.valueAccessor = this;
+
+    this.keyboardHandler = ({ keyCode }) => {
+      const listHeight = this.list.nativeElement.offsetHeight;
+
+      if ( keyCode === 40 || keyCode === 38 ) {
+        const optionNative = this.list.nativeElement.querySelector('#list-' + this.hoveredOption);
+        const optionHeight = optionNative.offsetHeight;
+        const optionPosition = optionNative.offsetTop + optionHeight;
+
+        if ( keyCode === 40 && this.hoveredOption < this.items.length - 1) {
+          this.hoveredOption++;
+
+          if ( optionPosition >= listHeight ) {
+            this.list.nativeElement.scrollTop += optionHeight;
+          }
+        }
+
+        if ( keyCode === 38 && this.hoveredOption > 0 ) {
+          this.hoveredOption--;
+
+          if ( this.list.nativeElement.scrollTop + optionHeight > optionPosition - optionHeight ) {
+            this.list.nativeElement.scrollTop -= optionHeight;
+          }
+        }
+      }
+
+      if ( keyCode === 13 ) {
+        this.writeValue(this.items[this.hoveredOption].value);
+        this.toggleList(false);
+      }
+    };
+
+    this.keyboardHandler = this.keyboardHandler.bind(this);
   }
 
   registerOnTouched(fn: any): void { }
@@ -75,25 +113,10 @@ export class SelectInputComponent implements ControlValueAccessor {
 
   private setActive(value: boolean): void {
 
-    const keydownHandler = ({ keyCode }) => {
-      if ( keyCode === 40 && this.hoveredOption < this.items.length - 1) {
-        this.hoveredOption++;
-      }
-
-      if ( keyCode === 38 && this.hoveredOption > 0 ) {
-        this.hoveredOption--;
-      }
-
-      if ( keyCode === 13 ) {
-        this.writeValue(this.items[this.hoveredOption].value);
-        this.toggleList(false);
-      }
-    };
-
     if ( !value ) {
-      this.inputRef.nativeElement.removeEventListener('keydown', keydownHandler);
+      this.inputRef.nativeElement.removeEventListener('keydown', this.keyboardHandler);
     } else {
-      this.inputRef.nativeElement.addEventListener('keydown', keydownHandler);
+      this.inputRef.nativeElement.addEventListener('keydown', this.keyboardHandler);
     }
 
     this.active = value;

@@ -15,8 +15,13 @@
       <path d="M2.70837 4.60419L6.40322 8.62391C6.41538 8.63736 6.43029 8.64813 6.44698 8.6555C6.46366 8.66287 6.48175 8.66669 6.50004 8.66669C6.51833 8.66669 6.53642 8.66287 6.5531 8.6555C6.56979 8.64813 6.5847 8.63736 6.59686 8.62391L10.2917 4.60419" stroke="#7B7E8C" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
           
-    <div class="select-list" *ngIf="active">
-      <div *ngFor="let item of items; index as i" (mouseover)="hoveredOption = i" [class.hovered]="i == hoveredOption" (click)="selectItem(item)">
+    <div class="select-list" *ngIf="active" #list>
+      <div *ngFor="let item of items; index as i" 
+           (mouseover)="hoveredOption = i" 
+           [class.hovered]="i == hoveredOption"
+           [id]="'list-' + i"
+           (click)="selectItem(item)"
+           >
         {{ item.text }}
       </div>
     </div>

@@ -21,8 +21,8 @@ export function getEstablishmentAddress(establishmentAddress: string): IAddress 
   const sanitizeString = (value: string) => typeof value === 'string' ? value.trim() : null;
 
   return {
-    street: sanitizeString(addressParts[0] + ', ' + addressParts[3] + ' - ' + addressParts[1]),
-    city: sanitizeString(addressParts[2])
+    street: sanitizeString(addressParts[0] + ', ' + addressParts[3]),
+    city: sanitizeString(addressParts[1])
   };
 }
 
