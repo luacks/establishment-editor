@@ -53,7 +53,7 @@ export class SelectInputComponent implements ControlValueAccessor {
       this.setActive(true);
     } else {
       // TODO deve existir algo melhor pra isso
-      setTimeout(() => this.setActive(false), 200);
+      setTimeout(() => this.setActive(false), 150);
     }
   }
 

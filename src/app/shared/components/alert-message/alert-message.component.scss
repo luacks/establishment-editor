@@ -1,0 +1,24 @@
+@import "theme";
+
+.alert-message {
+  color: $theme-color-dark;
+  margin: 20px 0;
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+
+  &.success {
+    color: $theme-color-success;
+  }
+
+  &.error {
+    color: $theme-color-error;
+  }
+
+
+  svg {
+    height: 13px;
+    fill: $theme-color-success;
+  }
+}

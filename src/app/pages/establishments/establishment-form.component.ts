@@ -30,9 +30,16 @@ export class EstablishmentFormComponent implements OnInit {
   establishment: IEstablishment;
 
   banks: SelectOption[];
+
   cities: SelectOption[];
 
   formEdit: FormGroup;
+
+  formMessage: string | null;
+
+  fetching = false;
+
+  error = false;
 
   constructor(
     private establishmentService: EstablishmentService,
@@ -54,8 +61,8 @@ export class EstablishmentFormComponent implements OnInit {
         agencyDigit: ['', Validators.required],
         account: ['', Validators.required],
         accountDigit: ['', Validators.required],
-        automaticWithdraw: [true, Validators.required],
-        accountType: ['corrente', Validators.required]
+        automaticWithdraw: ['', Validators.required],
+        accountType: ['', Validators.required]
       })
     });
   }
@@ -64,6 +71,11 @@ export class EstablishmentFormComponent implements OnInit {
     // tslint:disable-next-line: radix
     const id = parseInt(this.route.snapshot.paramMap.get('id'));
 
+    this.formEdit.valueChanges.subscribe( () => {
+      this.formMessage = null;
+    });
+
+    this.fetching = true;
     forkJoin({
       establishment: this.establishmentService.getOneByIndex(id),
       banks: this.banksService.getBanks(),
@@ -77,6 +89,11 @@ export class EstablishmentFormComponent implements OnInit {
       this.formEdit.reset({
         ...this.establishment
       });
+
+      this.fetching = false;
+    }, error => {
+      this.error    = true;
+      this.fetching = false;
     });
 
   }
@@ -97,7 +114,10 @@ export class EstablishmentFormComponent implements OnInit {
       };
 
       this.establishment = updatedEstablishment;
-      this.establishmentService.update(updatedEstablishment);
+      this.establishmentService.update(updatedEstablishment)
+        .subscribe( result => {
+          this.formMessage = 'Estabelecimento salvo';
+        });
     }
   }
 

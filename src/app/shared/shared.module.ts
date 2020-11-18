@@ -9,13 +9,15 @@ import { SelectInputComponent } from './components/forms/select-input/select-inp
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskModule } from 'ngx-mask';
+import { AlertMessageComponent } from './components/alert-message/alert-message.component';
 @NgModule({
   declarations: [
     EstablishmentCardComponent,
     NavbarComponent,
     TextInputComponent,
     ButtonComponent,
-    SelectInputComponent
+    SelectInputComponent,
+    AlertMessageComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +32,8 @@ import { NgxMaskModule } from 'ngx-mask';
     NavbarComponent,
     TextInputComponent,
     ButtonComponent,
-    SelectInputComponent
+    SelectInputComponent,
+    AlertMessageComponent
   ]
 })
 export class SharedModule { }

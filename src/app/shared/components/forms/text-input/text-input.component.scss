@@ -1,6 +1,8 @@
 @import "../forms.scss";
 
 .input-root {
+  
+  @include input-root;
 
   .text-input {
     @include input-theme;
@@ -10,6 +12,5 @@
     }
   }
 
-  @include input-error;
 }
 

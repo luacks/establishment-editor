@@ -3,7 +3,7 @@
 
 .input-root {
 
-  @include input-error;
+  @include input-root;
   
   .select-input {
     @include input-theme;

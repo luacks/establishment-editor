@@ -1,9 +1,15 @@
 <div class="container establishment-form">
   <div class="card">
     <app-establishment-header [establishment]="establishment"></app-establishment-header>
-
-    <h3 class="line">Informações Básicas</h3>
-    <form [formGroup]="formEdit">
+    <div class="row" *ngIf="fetching || error">
+      <div class="col-xs-12">
+        <app-alert-message 
+          [message]="!error ? 'Carregando...' : 'Houve um erro ao buscar o estabelecimento'">
+        </app-alert-message>
+      </div>
+    </div>
+    <form [formGroup]="formEdit" *ngIf="!fetching && !error">
+      <h3 class="line">Informações Básicas</h3>
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-4">
           <app-text-input formControlName="name">
@@ -81,9 +87,11 @@
           </div>
         </div>
       </div>
-
-      <div class="row end-xs form-submit">
-        <div class="col-xs-12">
+      <div class="row middle-xs form-submit">
+        <div class="col-xs-12 col-sm-6 first-xs">
+          <app-alert-message *ngIf="formMessage" [message]="formMessage" type="success"></app-alert-message>
+        </div>
+        <div class="col-xs-12 col-sm-6 end-xs">
           <app-button title="Salvar" [isDisabled]="!formEdit.valid" (btnClick)="submit()"></app-button>
         </div>
       </div>

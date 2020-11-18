@@ -1,3 +1,11 @@
+@import "theme";
+
+.establishment-list {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
 .establishment-form {
   .card {
     margin-top: 30px;
@@ -7,6 +15,10 @@
   .financial {
     >.row {
       margin-top: 20px;
+
+      @media only screen and (max-width: 600px)  {
+        margin-top: 0px;
+      }
       
       &:first-child {
         margin-top: 0;
@@ -39,8 +51,17 @@
     font-size: 21px;
     line-height: 24px;
     color: #4C5164;
+    flex: 1;
     margin-left: 22px;
   
+    @include xs {
+      font-size: 17px;
+
+      .id {
+        font-size: 12px;
+      }
+    }
+
     .id {
       font-weight: 500;
       font-size: 14px;
@@ -48,5 +69,10 @@
       color: #81879C;
       margin-top: 6px;
     }
+  }
+
+  .loading {
+    flex: 1;
+    height: 74px;
   }
 }

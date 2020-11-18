@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { Observable, Subscriber } from 'rxjs';
+import { Observable } from 'rxjs';
 import { formatAPIData, IEstablishment } from '../../models/establishment.model';
 
 @Injectable({
@@ -48,28 +48,31 @@ export class EstablishmentService {
           return establishment.index === index;
         } )[0]);
         subscriber.complete();
-      });
+      }, error => subscriber.error(error));
     });
   }
 
-  update(establishment: IEstablishment): boolean {
-    let establishments = [];
+  update(establishment: IEstablishment): Observable<boolean> {
+    return new Observable( subscriber => {
+      let establishments = [];
 
-    try {
-      establishments = JSON.parse(localStorage.getItem('establishments'));
-    } catch (err) {
-      return false;
-    }
-
-    const updatedEstablishments = establishments.map( storedEstablishment => {
-      if ( storedEstablishment.index === establishment.index ) {
-        return establishment;
+      try {
+        establishments = JSON.parse(localStorage.getItem('establishments'));
+      } catch (err) {
+        subscriber.error(false);
       }
 
-      return storedEstablishment;
-    });
+      const updatedEstablishments = establishments.map( storedEstablishment => {
+        if ( storedEstablishment.index === establishment.index ) {
+          return establishment;
+        }
 
-    console.log(updatedEstablishments);
-    localStorage.setItem('establishments', JSON.stringify(updatedEstablishments));
+        return storedEstablishment;
+      });
+
+      localStorage.setItem('establishments', JSON.stringify(updatedEstablishments));
+      subscriber.next(true);
+      subscriber.complete();
+    });
   }
 }

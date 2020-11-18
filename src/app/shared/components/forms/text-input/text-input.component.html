@@ -1,7 +1,9 @@
 <div class="input-root" [class.input-error]="ngControl.invalid">
   <label [class.hiddenLabel]="hiddenLabel"><ng-content></ng-content></label>
-  <div class="text-input">
+  <div class="text-input" [class.focused]="focused">
     <input type="text"
+          (focus)="focused = true"
+          (focusout)="focused = false"
           [formControl]="ngControl.control"
           [mask]="mask ? mask : null">
   </div>

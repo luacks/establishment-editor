@@ -12,9 +12,18 @@ import { Location } from '@angular/common';
         </svg>
       </div>
       <div class="establishment-image">
-        <img [src]="establishment?.picture" alt="univ">
+        <img *ngIf="establishment" [src]="establishment?.picture" alt="univ">
+        <ngx-content-loading
+            *ngIf="!establishment"
+            [speed]="'1500ms'"
+            [width]="74"
+            [height]="74"
+            [primaryColor]="'#f3f3f3'"
+            [secondaryColor]="'#ecebeb'">
+              <svg:g ngx-rect width="74" height="74" y="0" x="0" rx="5" ry="5"></svg:g>
+        </ngx-content-loading>
       </div>
-      <div class="info">
+      <div class="info" *ngIf="establishment">
         <div class="name">{{ establishment?.name }}</div>
         <div class="id">ID: {{ establishment?.index }}</div>
       </div>

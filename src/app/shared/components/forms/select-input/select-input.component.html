@@ -2,7 +2,7 @@
   <label [class.hiddenLabel]="hiddenLabel">
     <ng-content></ng-content>
   </label>
-  <div class="select-input">
+  <div class="select-input" [class.focused]="active">
     <input type="hidden" [formControl]="ngControl.control" [value]="value">
     <input type="text" 
         #fakeSelect

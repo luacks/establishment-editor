@@ -6,6 +6,7 @@ import { EstablishmentFormComponent } from './establishment-form.component';
 import { RouterModule, Routes } from '@angular/router';
 import { EstablishmentHeaderComponent } from './components/establishment-header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxContentLoadingModule } from 'ngx-content-loading';
 
 const routes: Routes = [
   {
@@ -25,6 +26,7 @@ const routes: Routes = [
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxContentLoadingModule,
     RouterModule.forChild(routes)
   ],
   exports: [

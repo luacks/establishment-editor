@@ -14,6 +14,8 @@ export class TextInputComponent implements ControlValueAccessor {
   @Input()
   mask: string;
 
+  focused: boolean;
+
   constructor(@Self() public ngControl: NgControl) {
     this.ngControl.valueAccessor = this;
   }
